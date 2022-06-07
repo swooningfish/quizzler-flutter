@@ -30,8 +30,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  int currentQuestionNumber = 0;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,7 +42,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.getQuestionText(currentQuestionNumber),
+                quizBrain.getQuestionText(),
                 //'This is where the question text will go.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -71,8 +69,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked true.
 
-                bool correctAnswer =
-                    quizBrain.getQuestionAnswer(currentQuestionNumber);
+                bool correctAnswer = quizBrain.getQuestionAnswer();
                 if (correctAnswer) {
                   scoreKeeper.add(
                     Icon(
@@ -89,7 +86,7 @@ class _QuizPageState extends State<QuizPage> {
                   );
                 }
                 setState(() {
-                  currentQuestionNumber++;
+                  quizBrain.nextQuestion();
                 });
               },
             ),
@@ -108,8 +105,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer =
-                    quizBrain.getQuestionAnswer(currentQuestionNumber);
+                bool correctAnswer = quizBrain.getQuestionAnswer();
                 if (correctAnswer) {
                   scoreKeeper.add(
                     Icon(
@@ -126,7 +122,7 @@ class _QuizPageState extends State<QuizPage> {
                   );
                 }
                 setState(() {
-                  currentQuestionNumber++;
+                  quizBrain.nextQuestion();
                 });
                 //The user picked false.
               },
