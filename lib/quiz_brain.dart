@@ -32,9 +32,11 @@ class QuizBrain {
   ];
 
   void nextQuestion() {
-    if (_questionNumber < _questionBank.length) {
+    if (_questionNumber < _questionBank.length - 1) {
       _questionNumber++;
     }
+    //print(_questionNumber);
+    //print(_questionBank.length);
   }
 
   String getQuestionText() {
